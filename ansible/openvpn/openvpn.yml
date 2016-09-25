@@ -1,0 +1,8 @@
+---
+- hosts: openvpn
+  gather_facts: True
+  become: True
+  vars_files:
+    - "vars/openvpn.yml"
+  roles:
+  - { role: "../roles/openvpn"}

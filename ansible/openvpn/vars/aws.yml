@@ -1,0 +1,54 @@
+---
+secrity_group_name: test-openvpn
+sec_group_description: "Open VPN server securty group for test"
+vpc_id: vpc-2010ce44
+region: us-west-2
+inbound_rules1:
+  - proto: tcp
+    from_port: 22
+    to_port: 22
+    cidr_ip: 0.0.0.0/0
+  - proto: "{{ openvpn_protocol }}"
+    cidr_ip: 0.0.0.0/0
+    from_port: "{{ openvpn_port }}"
+    to_port: "{{ openvpn_port }}"
+inbound_rules2:
+  - proto: "{{ openvpn_protocol }}"
+    cidr_ip: 0.0.0.0/0
+    from_port: "{{ openvpn_port }}"
+    to_port: "{{ openvpn_port }}"
+outbound_rules1:
+  - proto: all
+    cidr_ip: 0.0.0.0/0
+outbound_rules2:
+  - proto: tcp
+    cidr_ip: 10.0.0.0/16
+    from_port: 22
+    to_port: 22
+key_name: devops-us-west-2
+instance_type: t2.micro
+ami: 
+  us-east-1:
+    ami_id: ami-fce3c696
+  us-west-1:
+    ami_id: ami-06116566
+  us-west-2:
+    ami_id: ami-9abea4fb
+  eu-west-1:
+    ami_id: ami-f95ef58a
+  eu-central-1: 
+    ami_id: ami-87564feb
+  sa-east-1: 
+    ami_id: ami-0fb83963
+  ap-southeast-1: 
+    ami_id: ami-25c00c46
+  ap-southeast-2: 
+    ami_id: ami-6c14310f
+  ap-northeast-1: 
+    ami_id: ami-a21529cc
+  ap-northeast-2: 
+    ami_id: ami-09dc1267
+vpn_public_subnet_id: subnet-fbda218d
+
+
+

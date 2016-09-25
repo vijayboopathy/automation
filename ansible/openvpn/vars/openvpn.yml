@@ -1,0 +1,30 @@
+---
+ deb: "ansible_os_family == 'Debian'"
+ red: "ansible_os_family == 'RedHat'"
+ openvpn_key_country:  "IN"
+ openvpn_key_province: "Karnataka"
+ openvpn_key_city: "Bangalore"
+ openvpn_key_org: "Initcron"
+ openvpn_key_ou: "Devops"
+ openvpn_days_valid: "3650"
+ openssl_request_subject: "/C={{ openvpn_key_country }}/ST={{ openvpn_key_province }}/L={{ openvpn_key_city }}/O={{ openvpn_key_org }}/OU={{ openvpn_key_ou }}"
+ openvpn_key_size: "2048"
+ openvpn_cipher: "AES-256-CBC"
+ openvpn_auth_digest: "SHA1"
+ openvpn_path: "/etc/openvpn"
+ openvpn_ca: "{{ openvpn_path }}/ca"
+ openvpn_dhparam: "{{ openvpn_path }}/dh{{ openvpn_key_size }}.pem"
+ openvpn_hmac_firewall: "{{ openvpn_path }}/ta.key"
+ openvpn_server: "local"
+ openvpn_port: "1194"
+ openvpn_protocol: "udp"
+ # It assume that the subnet mask is /24
+ openvpn_network: "10.8.0.0"
+ # Private Subnet(s) in VPC that you want to reach through OPENVPN, it assume that the subnet mask is /24
+ private_networks:
+   - { "network": "192.168.0.0", "cidr":"255.255.255.0" }
+
+ # Please mentioned the clients' name at this location
+ openvpn_clients:
+   - "deepak-initcron-test"
+   - "gourav-initcron-test"
