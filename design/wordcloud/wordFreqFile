@@ -1,0 +1,55 @@
+devops,10
+docker,20
+aws,35
+kubernets,30
+mesos,30
+marathon,20
+terraform,25
+hubot,15
+mcollective,11
+otto,10
+make,24
+icinga,24
+dcos,20
+devops,100
+cloud computing,100
+openstack,18
+vagrant,18
+ansible,40
+chef,55
+puppet,34
+swarm,20
+rkt,10
+git,25
+razor,14
+capistrano,15
+bosh,10
+cloudfoundry,18
+packer,15
+jenkins,40
+zuul,20
+gerrit,15
+rundeck,27
+sonarqube,10
+serverspec,10
+continuous integration, 20
+continuous delivery, 20
+monitoring, 26
+logging, 20
+infrastructure as a code, 15
+shell,15
+sensu,15
+nagios,20
+zabbix,25
+datadog,15
+prometheus,10
+ganglia,26
+graphite,30
+elasticsearch,20
+logstash,15
+kibana,20
+loggly,10
+consul,30
+new relic,25
+etcd,25
+zookeeper,15
