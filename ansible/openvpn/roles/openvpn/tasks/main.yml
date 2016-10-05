@@ -126,7 +126,7 @@
      - /sbin/iptables -A FORWARD -s {{ openvpn_network }}/24 -j ACCEPT
      - /sbin/iptables -A FORWARD -j REJECT
      - /sbin/iptables -t nat -A POSTROUTING -s {{ openvpn_network }}/24 -o {{ ansible_default_ipv4.interface }} -j MASQUERADE
-   when: iptables_nat_rules.stdout.find("MASQUERADE") == -1
+   when: iptables_nat_rules.stdout.find("MASQUERADE") == -1 and ansible_distribution == 'Ubuntu'
    register: iptables_nat_rule_added
 
  - name: Save NAT iptables rules

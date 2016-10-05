@@ -28,3 +28,9 @@
  openvpn_clients:
    - "deepak-initcron-test"
    - "gourav-initcron-test"
+   - "prashant-cogmeta"
+   - "venkat-initcron"
+   - "vijay-initcron"
+   - "meenachi-initcron"
+   - "sagar-initcron"
+   
