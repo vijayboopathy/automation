@@ -1,0 +1,4 @@
+---
+# defaults file for docker
+RedHat_User: centos
+Debian_User: ubuntu
