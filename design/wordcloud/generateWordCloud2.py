@@ -19,7 +19,7 @@ def black_color_func(word=None, font_size=None, position=None, orientation=None,
 if __name__ == '__main__':
 
     if len(sys.argv) != 3:
-        print "USAGE: pythong generateWordCloud.py <wordFreqFile> <outImageFile>"
+        print "USAGE: python generateWordCloud.py <wordFreqFile> <outImageFile>"
         sys.exit(-1)
 
     # Read the whole text.
