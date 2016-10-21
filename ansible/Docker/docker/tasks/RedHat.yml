@@ -1,0 +1,19 @@
+---
+ - name: update RedHat Systems
+   yum: name=* state=latest
+
+ - name: Install Docker
+   shell: curl -sSL https://get.docker.io/ | sudo sh
+   sudo: yes
+
+ - name: Install Docker compose
+   shell: curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-$(uname -s)-$(uname -m)" > /usr/bin/docker-compose
+   args:
+     creates: /usr/bin/docker-compose
+
+ - file: path=/usr/bin/docker-compose mode=0777
+
+ - group: name=docker state=present
+
+ - name: Add User to the Docker Group
+   command: usermod -aG docker "{{ RedHat_User }}"

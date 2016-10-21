@@ -1,0 +1,6 @@
+---
+ - name: Start The Docker Daemon
+   service:
+      name: docker
+      state: started
+      enabled: yes
