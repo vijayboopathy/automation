@@ -38,12 +38,13 @@ Prerequisite
   - Edit defaults/main.yml
 
     to specify the user, depends on os_family
+
 <pre>
          RedHat_User: centos
          Debian_User: ubuntu  
 </pre>
 
-* If Docker-Compose to be installed. ByDefault it said to be "False".
+* If Docker-Compose to be installed. ByDefault it said to be "false"
    
         * false ===> Do nothing
 	* true  ===> Install
