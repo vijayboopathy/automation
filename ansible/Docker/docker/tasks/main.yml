@@ -11,3 +11,6 @@
    when: ansible_os_family == 'Debian'
 
  - include: service.yml
+
+ - include: compose.yml
+   when: compose

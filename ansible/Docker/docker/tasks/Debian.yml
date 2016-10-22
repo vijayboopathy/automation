@@ -1,25 +1,54 @@
 ---
- - name: Transfer The shell Script 
-   copy: src=debian.sh dest=/tmp mode=077
- 
- - name: Execute the Script
-   command: sh /tmp/debian.sh
- 
- - name: Remove the Script
-   command: rm -rf /tmp/debian.sh
+ - name: update the Server
+   apt:
+     update_cache: yes
+
+ - name: Install apt-transport-https
+   apt:
+     name: apt-transport-https
+     state: present
+
+ - name: Install ca-certificates
+   apt:
+     name: ca-certificates
+     state: present
+
+ - name: Add APT-Key
+   apt_key:
+     keyserver: "{{ apt_key_url }}"
+     id: "{{ apt_key_sig }}"
+     state: present
+   register: add_repository_key
+   ignore_errors: true
+
+ - name: Add APT-source entry
+   shell: echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' > /etc/apt/sources.list.d/docker.list
+   args:
+     creates: /etc/apt/sources.list.d/docker.list
+
+ - name: Update cache
+   apt:
+     update_cache: yes
+
+ - shell: uname -r
+   ignore_errors: yes
+   register: uname_r
+
+ - name: Install linux-image-extra-{{ uname_r.stdout }}
+   apt:
+     name: linux-image-extra-{{ uname_r.stdout }}
+     state: present
+
+ - name: Install linux-image-extra-virtual
+   apt:
+     name: linux-image-extra-virtual
+     state: present
 
  - name: Install Docker Engine
    apt:
-    name: docker-engine
-    state: latest 
+     name: docker-engine
+     state: latest
 
- - name: Install Docker compose
-   shell: curl -L "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-$(uname -s)-$(uname -m)" > /usr/bin/docker-compose
-   args:
-     creates: /usr/bin/docker-compose
-
- - file: path=/usr/bin/docker-compose mode=0777
- 
  - group: name=docker state=present
 
  - name: Add User to the Docker Group
