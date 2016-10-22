@@ -28,7 +28,7 @@ Prerequisite
 * Edit the docker.yml to specify the host to be installed
     
 <pre>    
-	* hosts: servers
+	  hosts: servers
           roles:
              - docker
 </pre>
@@ -38,21 +38,21 @@ Prerequisite
   - Edit defaults/main.yml
 
     to specify the user, depends on os_family
- <pre>
+<pre>
          RedHat_User: centos
          Debian_User: ubuntu  
- </pre>
+</pre>
 
 * If Docker-Compose to be installed. ByDefault it said to be "False".
    
-        - false ===> Do nothing
-	- true  ===> Install
+        * false ===> Do nothing
+	* true  ===> Install
 
   - Edit defaults/main.yml
 
-  <pre>
+<pre>
          compose: true
-  </pre>
+</pre>
 
 "True" Flag will install docker compose.
 
