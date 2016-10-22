@@ -44,7 +44,7 @@ Prerequisite
          Debian_User: ubuntu  
 </pre>
 
-* If Docker-Compose to be installed. ByDefault it said to be "false"
+* If Docker-Compose to be installed (Optinal)
    
         * false ===> Do nothing
 	* true  ===> Install
