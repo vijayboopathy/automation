@@ -26,33 +26,35 @@ Prerequisite
 	- /etc/ansible/hosts
 
 * Edit the docker.yml to specify the host to be installed
-        
+    
+<pre>    
 	* hosts: servers
           roles:
              - docker
+</pre>
 
 * To add user to the Docker group
    
   - Edit defaults/main.yml
 
-    to specify the user depends on os_family
+    to specify the user, depends on os_family
  <pre>
          RedHat_User: centos
          Debian_User: ubuntu  
  </pre>
 
-* If Docker-Compose to be installed. ByDefault Flag said to be "False".
+* If Docker-Compose to be installed. ByDefault it said to be "False".
    
-	 false ===> Do nothing
-	 true  ===> Install
+        - false ===> Do nothing
+	- true  ===> Install
 
-  	 - Edit defaults/main.yml
+  - Edit defaults/main.yml
 
   <pre>
          compose: true
   </pre>
 
-True Flag will install docker compose.
+"True" Flag will install docker compose.
 
 
 Run the ansible
