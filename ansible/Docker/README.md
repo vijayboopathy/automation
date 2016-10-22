@@ -44,19 +44,18 @@ Prerequisite
          Debian_User: ubuntu  
 </pre>
 
-* If Docker-Compose to be installed (Optinal)
+* If Docker-Compose to be installed (Optional)
    
         * false ===> Do nothing
 	* true  ===> Install
 
   - Edit defaults/main.yml
 
+"True" Flag will install docker compose.
+
 <pre>
          compose: true
 </pre>
-
-"True" Flag will install docker compose.
-
 
 Run the ansible
 ---------------
