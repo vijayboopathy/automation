@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 echo "This is Kubernetes 1.4 setup of master and minion."
 echo
 echo
@@ -24,7 +25,6 @@ echo "Master setup has been finished."
 echo "Setting up minions"
 touch minion.sh
 tee minion.sh <<-'DONE'
-#!/bin/bash
 sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 sudo cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
@@ -50,7 +50,25 @@ echo "Prerequisites isntalled  $i master."
 done
 echo "All minions have been configured."
 kubectl apply -f https://git.io/weave-kube
+#!/bin/bash
+for ((i=1; i<100; i++))
+do
 kubectl get pods --all-namespaces
+echo "Check whether all are in running fully(y/n)"
+read a
+if [ "$a" == "y" ]; then
+        kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+        kubectl describe svc kubernetes-dashboard -n kube-system
+        echo "Please go to hostip:nodeport to get into Kubernetes Dashboard"
+        sleep 10
+        i=100
+else [ "$a" == "n" ];
+        echo "Please wait for 100 sec to do the check whether it went to running state."
+        sleep 100
+        clear
+fi
+done
+clear
 echo
 echo
 echo
