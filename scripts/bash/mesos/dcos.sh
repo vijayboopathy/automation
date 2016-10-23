@@ -63,7 +63,7 @@ for ((i=1; i<=$agentnumb; i++))
 do
 echo "Please give the $i agent ip:"
 read agentip
-ssh root@agentip /script/$name.sh
+ssh root@$agentip /script/$name.sh
 echo "Prerequisites isntalled  $i master."
 done
 echo
