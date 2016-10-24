@@ -68,11 +68,9 @@ else [ "$a" == "n" ];
         clear
 fi
 done
-clear
 echo
 echo
 echo
-echo "When all the started running then you are good to go"
 echo "Kubernetes Setup is done."
 echo "Play around with Kubernetes"
 sleep 2
