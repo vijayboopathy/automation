@@ -1,0 +1,6 @@
+---
+ - name: Start the rundeck service
+   service:
+       name: rundeckd
+       state: started
+       enabled: yes
