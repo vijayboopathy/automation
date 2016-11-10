@@ -38,3 +38,35 @@ Run the Playbook
 <pre>
         ansible-playbook rundeck.yml
 </pre>
+
+Configure Node
+--------------
+
+* configure node with ssh key
+
+         - ssh-keygen -t rsa
+
+*  Copy the public key to authorized_keys
+
+*  Copy the private key to rundeck server directory
+
+          - /var/lib/rundeck/client.key
+
+Add Node in Rundeck Server
+--------------------------
+
+* Add the node in server to resolve client hostname
+
+	 - /etc/hosts
+
+* Edit the file
+
+          - /var/rundeck/projects/[projectname]/etc/resources.xml
+
+* Add the node config inside the Project
+
+<project>
+  <node name="servername" description="Dev MySQL" tags="" hostname="servername" osArch="amd64" osFamily="unix" osName="Linux" osVersion="2.6.32-504.8.1.el6.x86_64" username="userAccount" ssh-keypath="/var/lib/rundeck/client.key"/>
+</project>
+
+Check the log for error.
