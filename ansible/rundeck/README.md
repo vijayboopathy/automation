@@ -65,8 +65,9 @@ Add Node in Rundeck Server
 
 * Add the node config inside the Project
 
-<project>
-  <node name="servername" description="Dev MySQL" tags="" hostname="servername" osArch="amd64" osFamily="unix" osName="Linux" osVersion="2.6.32-504.8.1.el6.x86_64" username="userAccount" ssh-keypath="/var/lib/rundeck/client.key"/>
-</project>
+<pre>
 
+  <node name="servername" description="Dev MySQL" tags="" hostname="servername" osArch="amd64" osFamily="unix" osName="Linux" osVersion="2.6.32-504.8.1.el6.x86_64" username="userAccount" ssh-keypath="/var/lib/rundeck/client.key"/>
+
+</pre>
 Check the log for error.
