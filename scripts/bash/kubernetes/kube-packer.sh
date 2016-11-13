@@ -5,6 +5,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update -y
 apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
+rm -rf /var/lib/kubelet/*
 touch /master.sh
 cat <<EOF > /master.sh
 touch adm
