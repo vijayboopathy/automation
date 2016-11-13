@@ -6,7 +6,7 @@ EOF
 apt-get update -y
 apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
 touch /master.sh
-cat <<EOF > /master
+cat <<EOF > /master.sh
 touch adm
 touch minion.sh
 echo '#!/bin/bash' >> minion.sh
