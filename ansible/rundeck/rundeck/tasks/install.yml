@@ -1,0 +1,10 @@
+---
+ - name: Install Rundeck repo package
+   yum:
+    name: "http://repo.rundeck.org/latest.rpm"
+    state: present
+
+ - name: Install Rundeck
+   yum:
+    name: rundeck
+    state: latest

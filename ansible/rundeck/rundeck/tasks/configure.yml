@@ -1,0 +1,10 @@
+---
+ - name: create default configurations
+   template: src=framework.properties.j2 dest=/etc/rundeck/framework.properties  mode=0644
+   notify:
+    - restart rundeck
+
+ - name: create rundeck-config.properties configurations
+   template: src=rundeck-config.properties.j2 dest=/etc/rundeck/rundeck-config.properties  mode=0644
+   notify:
+    - restart rundeck

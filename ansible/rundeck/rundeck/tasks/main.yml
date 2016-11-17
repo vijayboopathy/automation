@@ -1,0 +1,6 @@
+---
+# tasks file for rundeck
+ - include: java.yml
+ - include: install.yml
+ - include: service.yml
+ - include: configure.yml
