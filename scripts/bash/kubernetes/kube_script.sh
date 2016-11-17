@@ -21,6 +21,7 @@ EOF
 apt-get update -y
 apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
 clear
+ rm -rf /var/lib/kubelet/*
 echo "Master setup has been finished."
 echo "Setting up minions"
 touch minion.sh
@@ -31,6 +32,7 @@ deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 sudo apt-get update -y
 sudo apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
+ rm -rf /var/lib/kubelet/*
 DONE
 clear
 touch adm
