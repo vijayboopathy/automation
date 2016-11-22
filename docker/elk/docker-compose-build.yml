@@ -2,7 +2,7 @@ version: '2'
 
 services:
   elasticsearch:
-    image: schoolofdevops/elasticsearch:5
+    build: elasticsearch/
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -11,7 +11,7 @@ services:
     networks:
       - docker_elk
   logstash:
-    image: schoolofdevops/logstash:5
+    build: logstash/
     command: -f /etc/logstash/conf.d/
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
@@ -22,7 +22,7 @@ services:
     depends_on:
       - elasticsearch
   kibana:
-    image: schoolofdevops/kibana:5
+    build: kibana/
     volumes:
       - ./kibana/config/:/opt/kibana/config/
     ports:

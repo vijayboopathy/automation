@@ -20,6 +20,15 @@ Based on the official images:
 2. Install [Docker-compose](http://docs.docker.com/compose/install/).
 3. Clone this repository
 
+##Increase max_map_count on your host (Linux)
+
+You need to increase max_map_count on your Docker host:
+
+````bash
+$ sudo sysctl -w vm.max_map_count=262144
+````
+
+
 ## SELinux
 
 On distributions which have SELinux enabled out-of-the-box you will need to either re-context the files or set SELinux into Permissive mode in order for docker-elk to start properly.
