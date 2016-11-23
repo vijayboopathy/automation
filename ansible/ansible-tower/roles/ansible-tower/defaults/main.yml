@@ -1,0 +1,14 @@
+---
+# defaults file for ansible-tower
+ansible_tower_url: http://releases.ansible.com/ansible-tower/setup/
+ansible_tower_version: 3.0.3
+ansible_tower_setup_dir: /opt
+
+# access credentials
+ansible_tower_pass: 1nitCr0n
+ansible_tower_redis_pass: passw0rd
+
+# db credentials
+ansible_tower_database_name: awx
+ansible_tower_database_user: awx
+ansible_tower_database_pass: passw0rd
