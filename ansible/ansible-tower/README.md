@@ -25,8 +25,9 @@ Prerequisite
         - hosts.ini
 
 * Role Variables
-    
-```	ansible_tower_url: http://releases.ansible.com/ansible-tower/setup/
+       
+        # ansible-tower
+	ansible_tower_url: http://releases.ansible.com/ansible-tower/setup/
 	ansible_tower_version: 3.0.3
 	ansible_tower_setup_dir: /opt
 
@@ -38,7 +39,7 @@ Prerequisite
 	ansible_tower_database_name: awx
 	ansible_tower_database_user: awx
 	ansible_tower_database_pass: SECURE_PASSWORD
-```
+
 
 * Edit the rundeck.yml to specify the host to be installed
 
@@ -48,13 +49,13 @@ Prerequisite
              - ansible-tower
 
 * Run the playbook
- 
-```
+      
+<Project>
 	ansible-playbook -i hosts.ini ansible-tower.yml
-``` 
+</project>
 
 * Access the Asible-Tower 
 
-```
+<project>
 	https://IP 
-```  
+</project>
