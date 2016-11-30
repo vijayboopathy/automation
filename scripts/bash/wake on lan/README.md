@@ -7,7 +7,7 @@
 
 >bash wake.sh
 
-3) You can connect and start the machine but first you need to install WakeOnLan
+3) connectto the network and make sure that the linux machine has installed with Wakeonlan
 
 4) And use the script
 
