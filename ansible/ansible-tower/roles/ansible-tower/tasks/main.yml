@@ -1,0 +1,27 @@
+---
+# tasks file for ansible-tower
+
+- name: Install epel package
+  yum: name=epel-release state=latest
+
+- name: Upgrade all packages
+  yum: name=* state=latest
+
+- name: Install ntp
+  yum: name=ntp state=latest
+
+- name: Start the ntp service
+  service: name=ntpd enabled=yes state=started
+ 
+- name: Install Ansible
+  yum: name=ansible state=latest
+
+- name: Extract the Ansible-tower setup 
+  unarchive: src={{ansible_tower_url}}/ansible-tower-setup-{{ansible_tower_version}}.tar.gz dest={{ansible_tower_setup_dir}} copy=no
+
+- name: Copy configuration file
+  template: src=inventory.j2 dest={{ansible_tower_setup_dir}}/ansible-tower-setup-{{ansible_tower_version}}/inventory mode=664
+
+- name: Go to the folder and execute command
+  command: chdir={{ansible_tower_setup_dir}}/ansible-tower-setup-{{ansible_tower_version}} bash setup.sh
+ 
