@@ -1,0 +1,50 @@
+---
+- hosts: digitalocean
+
+  vars_prompt:
+    - name: prefix
+      prompt: "What is the prefix of the droplets?"
+      private: no
+    - name: number
+      prompt: "How many droplets do you want to create?"
+      private: no
+
+  vars_files:
+    - vars.yml
+  
+  tasks:
+  
+  - name: Ensure ssh key exists
+    user: >
+      name={{ ansible_user_id }}
+      generate_ssh_key=yes
+      ssh_key_file=~/.ssh/id_rsa
+
+  - name: Ensure key exists in DigitalOcean
+    digital_ocean:
+      state=present
+      command=ssh
+      name=my_ssh_key
+      ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
+      api_token={{ do_token }}
+    register: my_ssh_key
+
+  - name: Launching {{ number  }} Droplets
+    digital_ocean: >
+      state=present
+      command=droplet
+      name={{ item }}
+      unique_name=yes
+      size_id={{ size }}
+      region_id={{ region }}
+      image_id={{ image }}
+      ssh_key_ids={{ my_ssh_key.ssh_key.id  }}
+      api_token={{ do_token }}
+    with_sequence:
+      start=1
+      end={{ number }}
+      format={{ prefix }}%02x
+    register: droplet_details
+
+  - debug: msg="IP is {{ item.droplet.ip_address }}"
+    with_items: "{{ droplet_details.results }}"
