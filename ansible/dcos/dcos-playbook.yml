@@ -1,0 +1,13 @@
+---
+- hosts: dcos-cluster,dcos-bootstrap
+  become: yes
+  roles:
+    - dcos-common
+  tags:
+    - dcos-common
+
+- hosts: dcos-bootstrap
+  roles:
+    - dcos-bootstrap
+  tags:
+    - dcos-bootstrap

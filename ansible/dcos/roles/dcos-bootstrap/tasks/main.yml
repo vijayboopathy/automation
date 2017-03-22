@@ -1,0 +1,50 @@
+---
+# tasks file for dcos-bootstrap
+
+- name: Create genconf directory
+  file: path={{ item }} state=directory mode=755
+  with_items:
+    - "{{ dcos_bootstrap_dir }}"
+    - "{{ dcos_bootstrap_dir }}/genconf"
+
+#- name: Copy the ssh private key to genconf directory
+#  copy: src={{dcos_bootstrap_private_key}} dest={{ dcos_bootstrap_dir }}/genconf/ssh_key mode=0600
+
+- name: Copy the ssh private key to genconf directory
+  command: creates={{ dcos_bootstrap_dir }}/genconf/ssh_key cp {{dcos_bootstrap_private_key}} {{ dcos_bootstrap_dir }}/genconf/ssh_key
+#  args:
+#    creates: {{ dcos_bootstrap_dir }}/genconf/ssh_key
+ 
+- name: Copy configuration file
+  template: src=genconf/config.yaml.j2 dest={{ dcos_bootstrap_dir }}/genconf/config.yaml mode=755
+
+- name: Copy ip-detect file
+  template: src=genconf/ip-detect.j2 dest={{ dcos_bootstrap_dir }}/genconf/ip-detect mode=755
+
+- name: Download the DC/OS installer
+  get_url: url={{ dcos_bootstrap_generate_config_url }}/{{ dcos_bootstrap_generate_config }} dest={{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }} mode=755
+
+- name: Run the DC/OS installer shell script on your bootstrapping master nodes
+  command: sudo bash "{{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }}" --genconf
+  args:
+    chdir: "{{ dcos_bootstrap_dir }}"
+
+- name: Install the cluster prerequisites, including system updates, compression utilities and cluster permissions
+  command: sudo bash "{{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }}" --install-prereqs
+  args:
+    chdir: "{{ dcos_bootstrap_dir }}"
+
+- name: Run a preflight script to validate that your cluster is installable
+  command: sudo bash "{{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }}" --preflight
+  args:
+    chdir: "{{ dcos_bootstrap_dir }}"
+
+- name: Install DC/OS on your cluster
+  command: sudo bash "{{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }}" --deploy
+  args:
+    chdir: "{{ dcos_bootstrap_dir }}"
+
+- name: Run the DC/OS diagnostic script to verify that services are up and running
+  command: sudo bash "{{ dcos_bootstrap_dir }}/{{ dcos_bootstrap_generate_config }}" --postflight
+  args:
+    chdir: "{{ dcos_bootstrap_dir }}"
