@@ -1,0 +1,22 @@
+---
+agent_list:
+{% for host in groups['mesos-agent'] %}
+- {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+bootstrap_url: {{ dcos_bootstrap_url }}
+cluster_name: {{ dcos_cluster_name }}
+exhibitor_storage_backend: {{ dcos_exhibitor_storage_backend }}
+master_discovery: {{dcos_master_discovery}}
+ip_detect_filename: {{ dcos_bootstrap_dir }}/genconf/ip-detect
+master_list:
+{% for host in groups['mesos-master'] %}
+- {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+
+process_timeout: {{dcos_bootstrap_process_timeout}}
+resolvers:
+- {{ dcos_resolvers_0 }}
+- {{ dcos_resolvers_1 }}
+ssh_port:
+- {{dcos_ssh_port}}
+- {{dcos_ssh_user}}
