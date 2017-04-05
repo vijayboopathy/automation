@@ -1,0 +1,27 @@
+---
+- hosts: digitalocean
+
+  vars_prompt:
+    - name: prefix
+      prompt: "What is the prefix of the droplets?"
+      private: no
+    - name: number
+      prompt: "How many droplets do you want to destroy?"
+      private: no
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+  - name: Destroy {{ number }} Droplets
+    digital_ocean: >
+      state=absent
+      name={{ item }}
+      unique_name=yes
+      api_token={{ do_token }}
+    with_sequence:
+      start=1
+      end={{ number }}
+      format={{ prefix }}%02x
+
