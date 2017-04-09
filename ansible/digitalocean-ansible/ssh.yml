@@ -1,0 +1,22 @@
+---
+- hosts: digitalocean
+
+  vars_files:
+    - vars.yml
+  
+  tasks:
+
+  - name: Ensure ssh key exists
+    user: >
+      name={{ ansible_user_id }}
+      generate_ssh_key=yes
+      ssh_key_file=~/.ssh/id_rsa
+
+  - name: Ensure key exists in DigitalOcean
+    digital_ocean:
+      state=present
+      command=ssh
+      name=my_ssh_key
+      ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
+      api_token={{ do_token }}
+    register: my_ssh_key
