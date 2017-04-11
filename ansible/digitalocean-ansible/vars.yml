@@ -1,5 +1,0 @@
-do_token: <PUT YOUR API TOKEN HERE>
-size: 512mb
-region: nyc3
-image: "ubuntu-14-04-x64"
-
