@@ -4,7 +4,7 @@ WORKDIR /code
 
 RUN apt-get update && \
     apt-get install software-properties-common -yq && \
-    apt-get install python3 python -yq && \
+    apt-get install python3 python git -yq && \
     apt-add-repository ppa:ansible/ansible -y && \
     apt-get update -yq && \
     apt-get install ansible -yq && \
