@@ -1,6 +1,0 @@
-do_token: 
-size: 512mb
-region: nyc3
-image: "ubuntu-14-04-x64"
-ssh_id: 8016477
-user_data: "{{ lookup('file', 'user-data.sh') }}"
