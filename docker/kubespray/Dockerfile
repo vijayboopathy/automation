@@ -15,3 +15,5 @@ RUN apt-get update && \
 RUN git clone https://github.com/kubernetes-incubator/kubespray.git && \
     cd kubespray && \
     wget -c https://raw.githubusercontent.com/kubernetes-incubator/kubespray/master/contrib/inventory_builder/inventory.py
+
+CMD bash
