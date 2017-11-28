@@ -1,0 +1,17 @@
+---
+- name: Install Chrony
+  apt: name=chrony state=installed
+       update_cache=yes
+
+- name: Enable Chrony on start up
+  service: name=chrony enabled=yes
+           state=started
+
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Kolkata
+
+- name: Update Chrony configuration
+  template: src=chrony.conf.j2 dest=/etc/chrony/chrony.conf
+  notify:
+    - restart chrony

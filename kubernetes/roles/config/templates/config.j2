@@ -1,0 +1,21 @@
+apiVersion: v1
+clusters:
+- cluster:
+    # needed if you get error "Unable to connect to the server: x509: certificate signed by unknown authority"
+    insecure-skip-tls-verify: true
+    # port 6443 is for secure connection
+    server: https://{{ ansible_default_ipv4.address }}:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: {{ client_certificate['content'] }}
+    client-key-data: {{ client_key['content'] }}

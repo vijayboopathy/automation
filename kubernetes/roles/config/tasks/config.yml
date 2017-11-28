@@ -1,0 +1,21 @@
+---
+  - name: create base64 versions of client certificate data
+    slurp:
+      src: /etc/kubernetes/ssl/node-node1.pem
+    register: client_certificate
+
+  - name: create base64 version of client key data
+    slurp:
+      src: /etc/kubernetes/ssl/node-node1-key.pem
+    register: client_key
+
+  - name: generate config for kubectl
+    template:
+      src: config.j2
+      dest: /etc/kubernetes/ssl/config
+
+  - name: fetch the configurations
+    fetch:
+      src: /etc/kubernetes/ssl/config
+      dest: kubectl_config/
+      flat: yes

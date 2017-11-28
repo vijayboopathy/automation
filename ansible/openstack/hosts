@@ -1,0 +1,11 @@
+[local]
+localhost ansible_connection=local
+
+[controller]
+10.40.0.21
+
+[compute]
+10.40.0.24
+10.40.0.25
+10.40.0.26
+10.40.0.27
